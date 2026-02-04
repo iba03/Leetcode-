@@ -3,8 +3,8 @@
   * Here we use C language to check this
   * We will have an array of 26 integers each initialized to 0
   * And we will traverse the the string 's' and increment the index for each letter
-  * if the string has letter 'a' index '0' [s[i]-'a']=['a'-'a'] will be incremented for each of its occurance...i.earr[s[i]-'a']++
-  * Similarly traverse through the entire string 't' but we will decrement the value at the index for each time the letter occurs.i.e arr[s[i]-'a']--
+  * if the string has letter 'a' index '0' [s[i]-'a']=['a'-'a'] will be incremented for each of its occurance. i.e  arr[s[i]-'a']++
+  * Similarly traverse through the entire string 't' but we will decrement the value at the index for each time the letter occurs. i.e arr[s[i]-'a']--
   * we will again traverse through the arrray to check if each element has a value 0
   * if each value of the index is 0,it is valid anagram
   * else return false as it is not a anagram
