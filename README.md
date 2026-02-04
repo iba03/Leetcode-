@@ -1,4 +1,4 @@
-** Valid Anagram Problem Explained:
+# Valid Anagram Problem Explained:
   * In this problem we will be given 2 strings s and t. If the string 't' can be formed from the letters of the word 's',it is a valid anagram.
   * Here we use C language to check this
   * We will have an array of 26 integers each initialized to 0
