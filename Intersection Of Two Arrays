@@ -1,0 +1,65 @@
+Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must be unique and you may return the result in any order.
+
+Example 1:
+
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2]
+Example 2:
+
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [9,4]
+Explanation: [4,9] is also accepted.
+
+Solution Approach:
+We have used the below approach using c to perform intersection array.
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* intersection(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {
+    int *arr=(int*)malloc(sizeof(int)*1000);
+    int i=0,j=0,k=0;
+    for(i=0;i<nums1Size;i++)
+    {
+        for(j=i+1;j<nums1Size;j++)
+        {
+            if(nums1[j]!=-1000)
+            {
+                if(nums1[i]==nums1[j])
+                {
+                    nums1[j]=-1000;
+                }
+            }
+
+        }
+    }
+    for(i=0;i<nums2Size;i++)
+    {
+        for(j=i+1;j<nums2Size;j++)
+        {
+            if(nums2[j]!=-1000)
+            {
+                if(nums2[i]==nums2[j])
+                {
+                    nums2[j]=-1000;
+                }
+            }
+
+        }
+    }
+    for(i=0;i<nums1Size;i++)
+    {
+        for(j=0;j<nums2Size;j++)
+        {
+            if(nums1[i]==nums2[j]&&nums1[i]!=-1000)
+            {
+                arr[k++]=nums1[i];
+                break;
+            }
+
+
+        }
+    }
+    returnSize[0]=k;
+    return arr;
+}
