@@ -1,19 +1,20 @@
 class Solution {
     public int maxProfit(int[] prices) {
     int i=0,j=0;
-    int pro=0;
+    int pro=0;//Denotes profit
     int min=prices[0],curr=prices[0];
     for(i=1;i<prices.length;i++)
     {
         if(prices[i]<min)
         {
-            min=prices[i];
+            min=prices[i];//keeping tracking of the min price encountered till now
         }
         if(prices[i]-min>pro)
         {
-            pro=prices[i]-min;
+            pro=prices[i]-min;//calculating profit by buying it at the lowest price encountered and selling it by that day's price
         }
     }
-        return pro;
+        return pro;//return the maximum profit
     }
 }
+//This is a simple approach for solving best time to buy and sell stock of leetcode
