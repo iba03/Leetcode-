@@ -1,0 +1,51 @@
+/**
+ * LeetCode Problem: Reverse Linked List
+ * Link: https://leetcode.com/problems/reverse-linked-list/
+ *
+ * Problem Statement:
+ * Given the head of a singly linked list, reverse the list,
+ * and return the reversed list.
+ *
+ * Example:
+ * Input: 1 -> 2 -> 3 -> 4 -> 5
+ * Output: 5 -> 4 -> 3 -> 2 -> 1
+ */
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+struct ListNode* reverseList(struct ListNode* head) {
+
+     // curr → pointer to traverse the list
+     struct ListNode* curr = head;
+
+     // prev → will become the new head of reversed list
+     struct ListNode* prev = NULL;
+
+     // next1 → temporarily stores next node
+     struct ListNode* next1;
+
+     // Traverse the list
+     while(curr != NULL)
+     {
+         // Store next node before breaking the link
+         next1 = curr->next;
+
+         // Reverse the current node's pointer
+         curr->next = prev;
+
+         // Move prev forward
+         prev = curr;
+
+         // Move curr forward
+         curr = next1;
+     }
+
+     // prev becomes the new head after reversal
+     return prev;
+}
