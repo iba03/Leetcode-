@@ -1,0 +1,76 @@
+/**
+ * LeetCode Problem: Intersection of Two Arrays
+ * Link: https://leetcode.com/problems/intersection-of-two-arrays/
+ *
+ * Problem Statement:
+ * Given two integer arrays nums1 and nums2, return an array of their intersection.
+ * Each element in the result must be unique, and you may return the result in any order.
+ *
+ * Example:
+ * Input: nums1 = [1,2,2,1], nums2 = [2,2]
+ * Output: [2]
+ *
+ * Note:
+ * - The returned array must be malloced (as per C requirement)
+ * - Caller is responsible for freeing the memory
+ */
+
+int* intersection(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {
+
+    // Allocate memory for result array (max possible size assumed as 1000)
+    int *arr = (int*)malloc(sizeof(int) * 1000);
+
+    // i, j → loop variables, k → index for result array
+    int i = 0, j = 0, k = 0;
+
+    // Step 1: Remove duplicates from nums1
+    // Mark duplicate elements as -1000 (a sentinel value)
+    for(i = 0; i < nums1Size; i++)
+    {
+        for(j = i + 1; j < nums1Size; j++)
+        {
+            if(nums1[j] != -1000)
+            {
+                if(nums1[i] == nums1[j])
+                {
+                    nums1[j] = -1000; // mark duplicate
+                }
+            }
+        }
+    }
+
+    // Step 2: Remove duplicates from nums2 (same approach)
+    for(i = 0; i < nums2Size; i++)
+    {
+        for(j = i + 1; j < nums2Size; j++)
+        {
+            if(nums2[j] != -1000)
+            {
+                if(nums2[i] == nums2[j])
+                {
+                    nums2[j] = -1000; // mark duplicate
+                }
+            }
+        }
+    }
+
+    // Step 3: Find intersection of both arrays
+    for(i = 0; i < nums1Size; i++)
+    {
+        for(j = 0; j < nums2Size; j++)
+        {
+            // If elements match and are not marked as duplicate
+            if(nums1[i] == nums2[j] && nums1[i] != -1000)
+            {
+                arr[k++] = nums1[i]; // add to result
+                break; // move to next element of nums1
+            }
+        }
+    }
+
+    // Store size of result array
+    returnSize[0] = k;
+
+    // Return the result array
+    return arr;
+}
