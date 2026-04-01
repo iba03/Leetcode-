@@ -1,0 +1,58 @@
+// LeetCode Problem: Reverse Vowels of a String
+// Link: https://leetcode.com/problems/reverse-vowels-of-a-string/
+
+/*
+Problem Statement:
+Given a string s, reverse only all the vowels in the string and return it.
+
+Vowels include: 'a', 'e', 'i', 'o', 'u' (both lowercase and uppercase).
+
+Example:
+Input: "hello"
+Output: "holle"
+
+Input: "leetcode"
+Output: "leotcede"
+*/
+
+char* reverseVowels(char* s) {
+
+    // Initialize two pointers
+    int i = 0;                  // Start pointer
+    int j = strlen(s) - 1;      // End pointer
+
+    // Traverse until both pointers meet
+    while(i < j)
+    {
+        // Check if left character is a vowel
+        if(s[i]=='a'||s[i]=='A'||s[i]=='e'||s[i]=='E'||s[i]=='i'||s[i]=='I'||s[i]=='O'||s[i]=='o'||s[i]=='u'||s[i]=='U')
+        {
+            // Check if right character is also a vowel
+            if(s[j]=='a'||s[j]=='A'||s[j]=='e'||s[j]=='E'||s[j]=='i'||s[j]=='I'||s[j]=='O'||s[j]=='o'||s[j]=='u'||s[j]=='U')
+            {
+                // Swap both vowels
+                char temp = s[i];
+                s[i] = s[j];
+                s[j] = temp;
+
+                // Move both pointers inward
+                i++;
+                j--;
+            }
+            else
+            {
+                // If right is not vowel, move right pointer left
+                j--;
+            }
+
+        }
+        else
+        {
+            // If left is not vowel, move left pointer right
+            i++;
+        }
+    }
+
+    // Return modified string
+    return s;
+}
