@@ -1,0 +1,55 @@
+// LeetCode Problem: Minimum Add to Make Parentheses Valid
+// Link: https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+
+/*
+Problem Statement:
+Given a string s of '(' and ')', return the minimum number of parentheses
+we must add to make the string valid.
+
+A string is valid if:
+- Every opening bracket '(' has a matching closing bracket ')'
+- Brackets are properly ordered
+
+Example:
+Input: s = "())"
+Output: 1
+
+Input: s = "((("
+Output: 3
+*/
+
+int minAddToMakeValid(char* s) {
+
+    // open → tracks unmatched '(' brackets
+    // add → tracks how many brackets need to be added
+    int open = 0, add = 0, i = 0;
+
+    // Traverse the string
+    for(i = 0; i < strlen(s); i++)
+    {
+        // If opening bracket → increase count
+        if(s[i] == '(')
+        {
+            open = open + 1;
+        }
+        else
+        {
+            // Closing bracket → try to match with an opening
+            open = open - 1;
+
+            // If no matching opening bracket exists
+            if(open < 0)
+            {
+                // Reset open count
+                open = 0;
+
+                // We need to add an opening bracket
+                add = add + 1;
+            }
+        }
+    }
+
+    // Total additions needed:
+    // unmatched '(' + required insertions
+    return (open + add);
+}
