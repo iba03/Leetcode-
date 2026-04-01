@@ -1,0 +1,57 @@
+// LeetCode Problem: Roman to Integer
+// Link: https://leetcode.com/problems/roman-to-integer/
+
+/*
+Problem Statement:
+Roman numerals are represented by seven different symbols:
+I(1), V(5), X(10), L(50), C(100), D(500), M(1000)
+
+Given a Roman numeral string, convert it to an integer.
+
+Rules:
+- Normally, symbols are added (e.g., VI = 5 + 1 = 6)
+- But if a smaller value comes before a larger value, it is subtracted
+  (e.g., IV = 5 - 1 = 4, IX = 10 - 1 = 9)
+
+Example:
+Input: s = "MCMXCIV"
+Output: 1994
+*/
+
+class Solution {
+    public int romanToInt(String s) {
+    
+        // Map to store Roman symbol values
+        Map<Character, Integer> m = new HashMap<>();
+
+        // Result variable to accumulate final integer value
+        int res = 0;
+
+        // Insert Roman numeral values into the map
+        m.put('I', 1);
+        m.put('V', 5);
+        m.put('X', 10);
+        m.put('L', 50);
+        m.put('C', 100);
+        m.put('D', 500);
+        m.put('M', 1000);
+
+        // Traverse the string except the last character
+        for(int i = 0; i < s.length() - 1; i++)
+        {
+            // If current value is less than next value → subtraction case
+            if(m.get(s.charAt(i)) < m.get(s.charAt(i + 1)))
+            {
+                res = res - m.get(s.charAt(i));
+            }
+            else
+            {
+                // Otherwise → normal addition
+                res = res + m.get(s.charAt(i));
+            }
+        }
+
+        // Add the value of the last character (always added)
+        return res + m.get(s.charAt(s.length() - 1));
+    }
+}
