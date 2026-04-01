@@ -1,0 +1,80 @@
+// LeetCode Problem: Spiral Matrix
+// Link: https://leetcode.com/problems/spiral-matrix/
+
+/*
+Problem Statement:
+Given an m x n matrix, return all elements of the matrix in spiral order.
+
+Spiral order means traversing the matrix in this pattern:
+→ Left to Right
+↓ Top to Bottom
+← Right to Left
+↑ Bottom to Top
+...and repeat until all elements are covered.
+
+Example:
+Input:
+[
+ [1,2,3],
+ [4,5,6],
+ [7,8,9]
+]
+
+Output:
+[1,2,3,6,9,8,7,4,5]
+*/
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+
+        // List to store the result in spiral order
+        List<Integer> li = new ArrayList<>();
+
+        // Initialize boundaries
+        int left = 0;
+        int right = (matrix[0].length) - 1;
+        int top = 0;
+        int bottom = (matrix.length) - 1;
+
+        // Traverse until all layers are processed
+        while(left <= right && top <= bottom)
+        {
+            // Traverse top row from left → right
+            for(int i = left; i <= right; i++)
+            {
+                li.add(matrix[top][i]);
+            }
+            top++; // Move top boundary downward
+
+            // Traverse right column from top → bottom
+            for(int i = top; i <= bottom; i++)
+            {
+                li.add(matrix[i][right]);
+            }
+            right--; // Move right boundary leftward
+
+            // Traverse bottom row from right → left (if valid row remains)
+            if(top <= bottom)
+            {
+                for(int i = right; i >= left; i--)
+                {
+                    li.add(matrix[bottom][i]);
+                }
+                bottom--; // Move bottom boundary upward
+            }
+
+            // Traverse left column from bottom → top (if valid column remains)
+            if(left <= right)
+            {
+                for(int i = bottom; i >= top; i--)
+                {
+                    li.add(matrix[i][left]);
+                }
+                left++; // Move left boundary rightward
+            }
+        }
+
+        // Return the spiral order list
+        return li;
+    }
+}
