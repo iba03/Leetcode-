@@ -1,0 +1,68 @@
+// LeetCode Problem: Container With Most Water
+// Link: https://leetcode.com/problems/container-with-most-water/
+
+/*
+Problem Statement:
+Given n non-negative integers height[i], where each represents a point at coordinate (i, height[i]),
+n vertical lines are drawn.
+
+Find two lines that together with the x-axis form a container that holds the most water.
+
+Return the maximum amount of water a container can store.
+
+Example:
+Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+*/
+
+int maxArea(int* height, int heightSize) {
+
+    // max → stores maximum area found
+    // area1 → current area
+    // b → width (distance between lines)
+    // l → height (minimum of two lines)
+    int max = 0, area1, area2, b, l;
+
+    // Two pointers: start (p) and end (q)
+    int p = 0, q = (heightSize - 1), i = 0;
+
+    // Traverse until pointers meet
+    while(p < q)
+    {
+        // Height of container is the minimum of two lines
+        if(height[p] < height[q])
+        {
+            l = height[p];
+        }
+        else
+        {
+            l = height[q];
+        }
+
+        // Width between two lines
+        b = q - p;
+
+        // Calculate area
+        area1 = l * b;
+
+        // Update maximum area if needed
+        if(area1 > max)
+        {
+            max = area1;
+        }
+
+        // Move the pointer pointing to smaller height
+        // (to try finding a taller line and increase area)
+        if(height[p] > height[q])
+        {
+            q--; // move right pointer left
+        }
+        else
+        {
+            p++; // move left pointer right
+        }
+    }
+
+    // Return maximum area found
+    return max;
+}
