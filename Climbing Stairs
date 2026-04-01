@@ -1,0 +1,50 @@
+// LeetCode Problem: Climbing Stairs
+// Link: https://leetcode.com/problems/climbing-stairs/
+
+/*
+Problem Statement:
+You are climbing a staircase. It takes n steps to reach the top.
+
+Each time you can either climb:
+- 1 step, or
+- 2 steps
+
+In how many distinct ways can you climb to the top?
+
+Example:
+Input: n = 3
+Output: 3
+Explanation:
+1+1+1
+1+2
+2+1
+*/
+
+class Solution {
+    public int climbStairs(int n) {
+
+        // Create an array to store number of ways for each step
+        int[] arr = new int[n];
+
+        int i = 0;
+
+        // Base case: if only 1 step → only 1 way
+        if(n == 1)
+            return 1;
+
+        // Base cases initialization
+        arr[0] = 1; // ways to reach step 1
+        arr[1] = 2; // ways to reach step 2
+
+        // Fill the array using dynamic programming
+        for(i = 2; i < n; i++)
+        {
+            // Ways to reach current step =
+            // ways from (i-1) + ways from (i-2)
+            arr[i] = arr[i-2] + arr[i-1];
+        }
+
+        // Return ways to reach nth step
+        return arr[n-1];
+    }
+}
